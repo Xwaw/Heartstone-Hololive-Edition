@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 404470783}
   - component: {fileID: 404470782}
   m_Layer: 0
-  m_Name: hpBar
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 1484662424}
   - component: {fileID: 1484662425}
   m_Layer: 0
-  m_Name: skuk
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a06356adcb5644fb6a8004a85f6a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listOfCards: []
 --- !u!114 &1484662425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,8 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ce6448a39ef5e46bc71c5a05b7197e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeckParent: {fileID: 1693498227}
   CardObject: {fileID: 5808963619059842951, guid: 4caea1da0df868248bd5220f0cabef0f, type: 3}
-  _cards: []
 --- !u!1 &1693498227
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1693498228}
   m_Layer: 0
-  m_Name: urmom
+  m_Name: DeckCards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

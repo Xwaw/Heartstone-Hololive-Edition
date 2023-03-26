@@ -1,55 +1,52 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public static Deck _istance;
-    public GameObject CardObject; // <= To jest ta karta która jest prefabem na dolnym pasku dziêki
+    public static Deck _instance;
 
-    public List<WildCard> _cards = new List<WildCard>();
-    void Start()
+    private List<WildCard> _cards = new List<WildCard>();
+
+    [SerializeField]
+    private GameObject DeckParent;
+
+    [SerializeField]
+    private GameObject CardObject;
+
+    void Awake()
     {
-        _istance = this;
-
-        
+        if(_instance == null)
+            _instance = this;
     }
 
     public void CreateCards(int count) 
     {
         for (int i = 0; i < count; i++)
         {
-            var nextCard = Instantiate(CardObject, Vector2.one, Quaternion.identity);
-            nextCard.name = CardObject.name + i;
-            nextCard.AddComponent(typeof(WildCard));
-            _cards.Add(nextCard.GetComponent<WildCard>());
+            GameObject cardGameObject = Instantiate(CardObject, Vector2.one, Quaternion.identity, DeckParent.transform);
+            WildCard cardComponent = (WildCard)cardGameObject.AddComponent(typeof(WildCard));
+            _cards.Add(cardComponent);
         }
-        UpdateLocation();
+        UpdatePositions();
     }
 
-    public void RemoveCard(WildCard delCard)
+    public void RemoveCard(WildCard card)
     {
-        _cards.Remove(delCard);
-        UpdateLocation();
+        _cards.Remove(card);
+        UpdatePositions();
     }
 
-    public void AddCard(WildCard newCard)
+    public void AddCard(WildCard card)
     {
-        _cards.Add(newCard);
-        UpdateLocation();
+        _cards.Add(card);
+        UpdatePositions();
     }
-    public void UpdateLocation()
+
+    public void UpdatePositions()
     {
         for (int i = 0; i < _cards.Count; i++)
         {
             _cards[i].gameObject.transform.position = new Vector2(-6 + i + i, -3.5f);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
