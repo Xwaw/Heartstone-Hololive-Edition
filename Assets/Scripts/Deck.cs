@@ -25,6 +25,7 @@ public class Deck : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             GameObject cardGameObject = Instantiate(CardObject, Vector2.one, Quaternion.identity, DeckParent.transform);
+            
             _cards.Add(cardGameObject.GetComponent<Card>());
         }
         UpdatePositions();

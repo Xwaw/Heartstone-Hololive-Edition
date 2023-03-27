@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public abstract class Card : MonoBehaviour
 {
     [SerializeField]
     private GameObject _canvasPrefab;
@@ -11,12 +11,19 @@ public class Card : MonoBehaviour
 
     public int Attack;
     public int Health;
+    public string Description;
 
     public void Start() 
-    {
-        Attack = Mathf.RoundToInt(Random.Range(0f, 10f));
-        Health = Mathf.RoundToInt(Random.Range(0f, 10f));
+    { 
         CreateTextMesh();
+    }
+
+    public Card(int attack, int health, string description)
+    {
+        Attack = attack;
+        Health = health;
+
+        Description = description;
     }
 
     public void AddBuff(Buff buff) 
@@ -29,12 +36,20 @@ public class Card : MonoBehaviour
         Map._instance.CardClicked(this);
     }
 
+    private TextMeshProUGUI textMesh;
+
     private void CreateTextMesh() 
     {
         GameObject canvas = Instantiate(_canvasPrefab, transform);
         GameObject textObject = canvas.transform.Find("power_text").gameObject;
-        TextMeshProUGUI textMesh = textObject.GetComponent<TextMeshProUGUI>();
-        textMesh.SetText($"{Attack}");
+        textMesh = textObject.GetComponent<TextMeshProUGUI>();
+    }
+
+
+
+    public void ShowInfo()
+    {
+        textMesh.SetText(Description);
     }
 }
 
