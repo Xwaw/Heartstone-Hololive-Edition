@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8678305152214118101}
   - component: {fileID: 6207814852863778163}
   - component: {fileID: 2359766820486504723}
+  - component: {fileID: -4636849666090913474}
   m_Layer: 0
   m_Name: kartapng
   m_TagString: Untagged
@@ -111,3 +112,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.98, y: 2.58}
   m_EdgeRadius: 0
+--- !u!114 &-4636849666090913474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808963619059842951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a90ccfa4e3ca940be6e3d91ac5d617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasPrefab: {fileID: 2795376374359381399, guid: 0d35a5b15c029864cb193d345df0b69f, type: 3}
+  Attack: 0
+  Health: 0

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
     public static Deck _instance;
 
-    private List<WildCard> _cards = new List<WildCard>();
+    private List<Card> _cards = new List<Card>();
 
     [SerializeField]
     private GameObject DeckParent;
@@ -24,19 +25,18 @@ public class Deck : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             GameObject cardGameObject = Instantiate(CardObject, Vector2.one, Quaternion.identity, DeckParent.transform);
-            WildCard cardComponent = (WildCard)cardGameObject.AddComponent(typeof(WildCard));
-            _cards.Add(cardComponent);
+            _cards.Add(cardGameObject.GetComponent<Card>());
         }
         UpdatePositions();
     }
 
-    public void RemoveCard(WildCard card)
+    public void RemoveCard(Card card)
     {
         _cards.Remove(card);
         UpdatePositions();
     }
 
-    public void AddCard(WildCard card)
+    public void AddCard(Card card)
     {
         _cards.Add(card);
         UpdatePositions();

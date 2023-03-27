@@ -5,7 +5,7 @@ public class Map : MonoBehaviour
 {
     public static Map _instance;
 
-    private List<WildCard> _cards = new List<WildCard>();
+    private List<Card> _cards = new List<Card>();
 
     void Awake()
     {
@@ -13,7 +13,7 @@ public class Map : MonoBehaviour
             _instance = this;
     }
 
-    public void CardClicked(WildCard card) 
+    public void CardClicked(Card card) 
     {
         if (_cards.Contains(card)) 
         {
