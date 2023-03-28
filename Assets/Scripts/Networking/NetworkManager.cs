@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.SignalR.Client;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
@@ -15,7 +16,14 @@ public class NetworkManager : MonoBehaviour
 
         _hub.StartAsync().ContinueWith((_) =>
         {
-            
+            _hub.InvokeAsync<List<Lobby>>("FetchLobbies").ContinueWith((lobbies) =>
+            {
+                foreach (Lobby b in lobbies.Result)
+                {
+                    Debug.Log(b);
+                }
+                Debug.Log(lobbies.Result.Count);
+            });
         });
     }
 

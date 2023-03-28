@@ -31,6 +31,9 @@ public class Deck : MonoBehaviour
             _cards.Add(card);
         }
 
+        NetworkManager._hub.SendCoreAsync("PlaceCard", null);
+        //
+
         UpdatePositions();
     }
 
