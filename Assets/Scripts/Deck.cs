@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Deck : MonoBehaviour
@@ -7,9 +7,6 @@ public class Deck : MonoBehaviour
     public static Deck _instance;
 
     private List<Card> _cards = new List<Card>();
-
-    [SerializeField]
-    private GameObject DeckParent;
 
     [SerializeField]
     private GameObject CardObject;
@@ -22,12 +19,18 @@ public class Deck : MonoBehaviour
 
     public void CreateCards(int count) 
     {
+        Type[] types = CardManager.GetDrawableCards();
+        System.Random rng = new System.Random();
+
         for (int i = 0; i < count; i++)
         {
-            GameObject cardGameObject = Instantiate(CardObject, Vector2.one, Quaternion.identity, DeckParent.transform);
-            
-            _cards.Add(cardGameObject.GetComponent<Card>());
+            GameObject cardGameObject = Instantiate(CardObject, Vector2.one, Quaternion.identity, CardManager.GetDeckParent().transform);
+
+            Card card = (Card)cardGameObject.AddComponent(types[rng.Next(0, types.Length)]);
+            card.owner = Player.MainPlayer;
+            _cards.Add(card);
         }
+
         UpdatePositions();
     }
 
@@ -47,7 +50,7 @@ public class Deck : MonoBehaviour
     {
         for (int i = 0; i < _cards.Count; i++)
         {
-            _cards[i].gameObject.transform.position = new Vector2(-6 + i + i, -3.5f);
+            _cards[i].gameObject.transform.position = new Vector2(44 + i + i, -3.8f);
         }
     }
 }
